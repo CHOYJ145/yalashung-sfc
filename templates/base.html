@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>여섯 그리고 하나: 얄라셩에서 서울영화집단까지</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.css"
+          integrity="sha512-Q6O0A73pBRQcea9MEmqh8P64s4ktCVkF7ktR0C67tD4/gr3i6Jbsbirb2etYJvXUzFGShqzzkKVHWgFUqpseoA=="
+          crossorigin="anonymous"/>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js"
+            integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA=="
+            crossorigin="anonymous"></script>
+    {% endblock %}
+</head>
+<body>
+
+<div class="wrap">
+    {% block content %}{% endblock %}
+</div>
+
+<script>
+    var windowheight = "";
+    var sectionTop1 = "";
+    var sectionTop2 = "";
+    var sectionTop3 = "";
+    var sectionTop4 = "";
+
+    $(window).on('resize', function () {
+        windowheight = $(window).height();
+        sectionTop1 = $('#introduction').offset().top;
+        sectionTop2 = $('#archives').offset().top;
+        sectionTop3 = $('#films').offset().top;
+        sectionTop4 = $('#interview').offset().top;
+    });
+
+    $(document).ready(function () {
+        windowheight = $(window).height();
+        sectionTop1 = $('#introduction').offset().top;
+        sectionTop2 = $('#archives').offset().top;
+        sectionTop3 = $('#films').offset().top;
+        sectionTop4 = $('#interview').offset().top;
+
+
+
+        $('.select-item-inner, .popup-open-btn').mouseenter(function () {
+            var thumbImgUrl = $(this).data('thumb');
+            $(this).find('ul').addClass('on');
+            $('.thumbnail-view').css('background-image', 'url(' + thumbImgUrl + ')');
+            $('.thumbnail-view').addClass('on');
+        });
+        $('.select-item-inner, .popup-open-btn').mouseleave(function () {
+            $(this).find('ul').removeClass('on');
+            $('.thumbnail-view').removeClass('on');
+        });
+
+        $('.popup-open-btn').click(function () {
+            var popupNum = $(this).data('num');
+            if (!$('.layerpopup-wrapper').hasClass('view')) {
+                $('.layerpopup-wrapper').addClass('view');
+                $('.popup' + popupNum + '').addClass('on');
+            } else {
+                $('.popup').removeClass('on');
+                $('.popup' + popupNum + '').addClass('on');
+            }
+        });
+
+        $('.layerpopup-close-btn').click(function () {
+            $('.layerpopup-wrapper').removeClass('view');
+            $('.popup').removeClass('on');
+        });
+
+        $('.dim').click(function () {
+            $('.layerpopup-wrapper').removeClass('view');
+        });
+
+    });
+
+    $('.contents').scroll(function () {
+        windowheight = $(window).height();
+        sectionTop1 = $('#introduction').offset().top;
+        sectionTop2 = $('#archives').offset().top;
+        sectionTop3 = $('#films').offset().top;
+        sectionTop4 = $('#interview').offset().top;
+
+        var contentTop = $('.contents').scrollTop();
+
+        if (contentTop > windowheight) {
+            $('#header').addClass('fixed');
+        } else {
+            $('#header').removeClass('fixed');
+        }
+
+        if (sectionTop1 > 0 || sectionTop1 <= -(windowheight)) {
+
+        } else {
+            $('.navi-item').removeClass('on');
+            $('.btn-introduction').addClass('on');
+        }
+        if (sectionTop2 > 0 || sectionTop2 <= -(windowheight)) {
+
+        } else {
+            $('.navi-item').removeClass('on');
+            $('.btn-archives').addClass('on');
+        }
+        if (sectionTop3 > 0 || sectionTop3 <= -(windowheight)) {
+
+        } else {
+            $('.navi-item').removeClass('on');
+            $('.btn-films').addClass('on');
+        }
+        if (sectionTop4 > 0 || sectionTop4 <= -(windowheight)) {
+
+        } else {
+            $('.navi-item').removeClass('on');
+            $('.btn-interview').addClass('on');
+        }
+    });
+
+    var swiper1 = new Swiper('.swiper1', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper2 = new Swiper('.swiper2', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper3 = new Swiper('.swiper3', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper4 = new Swiper('.swiper4', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper5 = new Swiper('.swiper5', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper6 = new Swiper('.swiper6', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper7 = new Swiper('.swiper7', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper8 = new Swiper('.swiper8', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper9 = new Swiper('.swiper9', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper11 = new Swiper('.swiper11', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper12 = new Swiper('.swiper12', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper13 = new Swiper('.swiper13', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper14 = new Swiper('.swiper14', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper15 = new Swiper('.swiper15', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper16 = new Swiper('.swiper16', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper17 = new Swiper('.swiper17', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper18 = new Swiper('.swiper18', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper19 = new Swiper('.swiper19', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper20 = new Swiper('.swiper20', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper21 = new Swiper('.swiper21', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper22 = new Swiper('.swiper22', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper23 = new Swiper('.swiper23', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+    var swiper24 = new Swiper('.swiper24', {
+        autoHeight: false, //enable auto height
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    /*
+     * MARQUEE 3000 MARQUEE 3000 MARQUEE 3000 MARQUEE 3000 MARQUEE 3000
+     * http://github.com/ezekielaquino/marquee3000
+     * Marquees for the new millenium v1.0
+     * MIT License
+     */
+
+    ;(function (root, factory) {
+        if (typeof define === 'function' && define.amd) {
+            define([], factory);
+        } else if (typeof exports === 'object') {
+            module.exports = factory();
+        } else {
+            root.Marquee3k = factory();
+        }
+
+    }(this, function () {
+        'use strict';
+
+        class Marquee3k {
+            constructor(element, options) {
+                this.element = element;
+                this.selector = options.selector;
+                this.speed = element.dataset.speed || 0.25;
+                this.pausable = element.dataset.pausable;
+                this.reverse = element.dataset.reverse;
+                this.paused = false;
+                this.parent = element.parentElement;
+                this.parentProps = this.parent.getBoundingClientRect();
+                this.content = element.children[0];
+                this.innerContent = this.content.innerHTML;
+                this.wrapStyles = '';
+                this.offset = 0;
+
+                this._setupWrapper();
+                this._setupContent();
+                this._setupEvents();
+
+                this.wrapper.appendChild(this.content);
+                this.element.appendChild(this.wrapper);
+            }
+
+            _setupWrapper() {
+                this.wrapper = document.createElement('div');
+                this.wrapper.classList.add('marquee3k__wrapper');
+                this.wrapper.style.whiteSpace = 'nowrap';
+            }
+
+            _setupContent() {
+                this.content.classList.add(`${this.selector}__copy`);
+                this.content.style.display = 'inline-block';
+                this.contentWidth = this.content.offsetWidth;
+
+                this.requiredReps = this.contentWidth > this.parentProps.width ? 2 : Math.ceil((this.parentProps.width - this.contentWidth) / this.contentWidth) + 1;
+
+                for (let i = 0; i < this.requiredReps; i++) {
+                    this._createClone();
+                }
+
+                if (this.reverse) {
+                    this.offset = this.contentWidth * -1;
+                }
+
+                this.element.classList.add('is-init');
+            }
+
+            _setupEvents() {
+                this.element.addEventListener('mouseenter', () => {
+                    if (this.pausable) this.paused = true;
+                });
+
+                this.element.addEventListener('mouseleave', () => {
+                    if (this.pausable) this.paused = false;
+                });
+            }
+
+            _createClone() {
+                const clone = this.content.cloneNode(true);
+                clone.style.display = 'inline-block';
+                clone.classList.add(`${this.selector}__copy`);
+                this.wrapper.appendChild(clone);
+            }
+
+            animate() {
+                if (!this.paused) {
+                    const isScrolled = this.reverse ? this.offset < 0 : this.offset > this.contentWidth * -1;
+                    const direction = this.reverse ? -1 : 1;
+                    const reset = this.reverse ? this.contentWidth * -1 : 0;
+
+                    if (isScrolled) this.offset -= this.speed * direction;
+                    else this.offset = reset;
+
+                    this.wrapper.style.whiteSpace = 'nowrap';
+                    this.wrapper.style.transform = `translate(${this.offset}px, 0) translateZ(0)`;
+                }
+            }
+
+            _refresh() {
+                this.contentWidth = this.content.offsetWidth;
+            }
+
+            repopulate(difference, isLarger) {
+                this.contentWidth = this.content.offsetWidth;
+
+                if (isLarger) {
+                    const amount = Math.ceil(difference / this.contentWidth) + 1;
+
+                    for (let i = 0; i < amount; i++) {
+                        this._createClone();
+                    }
+                }
+            }
+
+            static refresh(index) {
+                MARQUEES[index]._refresh();
+            }
+
+            static refreshAll() {
+                for (let i = 0; i < MARQUEES.length; i++) {
+                    MARQUEES[i]._refresh();
+                }
+            }
+
+            static init(options = {selector: 'marquee3k'}) {
+                window.MARQUEES = [];
+                const marquees = Array.from(document.querySelectorAll(`.${options.selector}`));
+                let previousWidth = window.innerWidth;
+                let timer;
+
+                for (let i = 0; i < marquees.length; i++) {
+                    const marquee = marquees[i];
+                    const instance = new Marquee3k(marquee, options);
+                    MARQUEES.push(instance);
+                }
+
+                animate();
+
+                function animate() {
+                    for (let i = 0; i < MARQUEES.length; i++) {
+                        MARQUEES[i].animate();
+                    }
+                    window.requestAnimationFrame(animate);
+                }
+
+                window.addEventListener('resize', () => {
+                    clearTimeout(timer);
+
+                    timer = setTimeout(() => {
+                        const isLarger = previousWidth < window.innerWidth;
+                        const difference = window.innerWidth - previousWidth;
+
+                        for (let i = 0; i < MARQUEES.length; i++) {
+                            MARQUEES[i].repopulate(difference, isLarger);
+                        }
+
+                        previousWidth = this.innerWidth;
+                    });
+                }, 250);
+            }
+        }
+
+        return Marquee3k;
+
+    }));
+
+    Marquee3k.init();
+
+
+    var viewWidth,
+        viewHeight,
+        canvas = document.getElementById("canvas"),
+        ctx;
+
+    // change these settings
+    var patternSize = 64,
+        patternScaleX = 1,
+        patternScaleY = 1,
+        patternRefreshInterval = 4,
+        patternAlpha = 25; // int between 0 and 255,
+
+    var patternPixelDataLength = patternSize * patternSize * 4,
+        patternCanvas,
+        patternCtx,
+        patternData,
+        frame = 0;
+
+    window.onload = function () {
+        initCanvas();
+        initGrain();
+        requestAnimationFrame(loop);
+    };
+
+    // create a canvas which will render the grain
+    function initCanvas() {
+        viewWidth = canvas.width = canvas.clientWidth;
+        viewHeight = canvas.height = canvas.clientHeight;
+        ctx = canvas.getContext('2d');
+
+        ctx.scale(patternScaleX, patternScaleY);
+    }
+
+    // create a canvas which will be used as a pattern
+    function initGrain() {
+        patternCanvas = document.createElement('canvas');
+        patternCanvas.width = patternSize;
+        patternCanvas.height = patternSize;
+        patternCtx = patternCanvas.getContext('2d');
+        patternData = patternCtx.createImageData(patternSize, patternSize);
+    }
+
+    // put a random shade of gray into every pixel of the pattern
+    function update() {
+        var value;
+
+        for (var i = 0; i < patternPixelDataLength; i += 4) {
+            value = (Math.random() * 255) | 0;
+
+            patternData.data[i] = value;
+            patternData.data[i + 1] = value;
+            patternData.data[i + 2] = value;
+            patternData.data[i + 3] = patternAlpha;
+        }
+
+        patternCtx.putImageData(patternData, 0, 0);
+    }
+
+    // fill the canvas using the pattern
+    function draw() {
+        ctx.clearRect(0, 0, viewWidth, viewHeight);
+
+        ctx.fillStyle = ctx.createPattern(patternCanvas, 'repeat');
+        ctx.fillRect(0, 0, viewWidth, viewHeight);
+    }
+
+    function loop() {
+        if (++frame % patternRefreshInterval === 0) {
+            update();
+            draw();
+        }
+
+        requestAnimationFrame(loop);
+    }
+</script>
+</body>
+</html>
